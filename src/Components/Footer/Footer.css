@@ -1,0 +1,15 @@
+.ftr{
+    background-color: lightblue;
+    height: 350px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+.ftr img{
+    width: 70px;
+    height: 70px;
+}
+.ftr Button{
+    color: aliceblue !important;
+} 
