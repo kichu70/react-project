@@ -5,16 +5,28 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import "./Item.css";
+import "./Responsive.css"
 import Product from "../Product.jsx/Product";
 import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import Confirm from "../Confirm/Confirm";
+import Edititem from "../Edit/Edititem";
 
 const Iteams = () => {
   const notify = () => toast("Iteam Has been deleted");
+  const notify2 = () => toast("Iteam not deleted");
   const navigate = useNavigate();
   const [item, setItem] = useState([]);
+  const [openConfirm,setOpenConfirm]=useState(false)
+  const [deleteId,setDeletId]=useState(null)
+  const [openEdit,setopenEdit]=useState(false)
+  const[editid,setEditid]=useState(null)
+
+
+
+  // ---------------------getdata--------------------------------
   useEffect(() => {
     try {
       axios("https://fakestoreapi.com/products").then((response) =>
@@ -25,19 +37,51 @@ const Iteams = () => {
       console.error(error);
     }
   }, []);
+  // console.log(item,"-----------------")
 
-  const onhandledlete =  (id) => {
-    if (window.confirm("Do you want delet ")) {
+
+
+// -------------------------delet data----------------------------
+  const handleDeleteClick =(id)=>{
+    setDeletId(id);
+    setOpenConfirm(true)
+  }
+ 
+
+const onhandledlete =  (id) => {
+    if(!deleteId)return;
       try {
          axios
-          .delete(`https://fakestoreapi.com/products/${id}`)
-          .then(() => setItem(item.filter((i) => i.id !== id)));
-          notify()
+          .delete(`https://fakestoreapi.com/products/${deleteId}`)
+          // .then(() => setItem(item.filter((i) => i.id !== id)));
+       .then(()=> setItem(item.filter((i) => i.id !== deleteId)));
+         notify()
+         
       } catch (err) {
         alert(err);
       }
-    }
+      finally{
+        setOpenConfirm(false)
+        setDeletId(null)
+      }
   };
+
+
+  // -----------------------------updatedata---------------------------
+
+  const hadleUpdate =(id)=>{
+    setEditid(id)
+    setopenEdit(true)
+  }
+ const update=(id)=>{
+  axios.get(`https://fakestoreapi.com/${id}`)
+  .then(response =>console.log(response.data))
+  // .then(data => alert(data));
+ }
+
+
+ 
+//  ----------------------------------------------------------------
   return (
     <div className="main-content">
 
@@ -82,11 +126,12 @@ const Iteams = () => {
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => onhandledlete(item.id)}
+                  onClick={() => handleDeleteClick(item.id)}
                 >
-                  delet
+                  delete
                 </Button>
-                <Button variant="contained" color="success" size="small">
+                <Button variant="contained" color="success" size="small"
+                onClick={()=>hadleUpdate(item.id)}>
                   edit
                 </Button>
               </div>
@@ -94,6 +139,17 @@ const Iteams = () => {
           </div>
         ))}
       </div>
+      <Confirm 
+      open={openConfirm}
+      onConfirm={onhandledlete}
+      onCancel={()=>{setOpenConfirm(false);notify2();
+        setDeletId(null)
+      }}/>
+      <Edititem
+      open={openEdit}
+      id={editid}
+      onClose={()=>setopenEdit(false)} />
+
     </div>
   );
 };

@@ -1,70 +1,70 @@
-.main-content{
-    display: flex;
-    /* background-color: red; */
-    flex-direction: column;
-    max-width: 1250px;
-    margin: 0 auto;
+.main-content {
+  display: flex;
+  /* background-color: red; */
+  flex-direction: column;
+  max-width: 1250px;
+  margin: 0 auto;
 }
-.main{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
+.main {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
-h1{
-    font-size: 2.5rem;
+h1 {
+  font-size: 2.5rem;
 }
-.gridss{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
+.gridss {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
-.Card{
-    width: 250px !important;
-    /* background-color: aqua; */
-    min-height: 400px !important;
-    margin:  15px;
+.Card {
+  width: 250px !important;
+  /* background-color: aqua; */
+  min-height: 400px !important;
+  margin: 15px;
 }
 /* .CardMedia{
     display: flex;
     width: 100%;
     background-color: aqua ;
 } */
-.discription{
-      display: -webkit-box;
-  -webkit-line-clamp: 3;  
+.discription {
+  display: -webkit-box;
+  /* -webkit-line-clamp: 3; */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 4.5em; 
+  max-height: 4.5em;
 }
-.title{
+.title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.price{
-    color: green;
+.price {
+  color: green;
 }
-.main Button{
-    margin: 0 0 20px 0;
+.main Button {
+  margin: 0 0 20px 0;
 }
-.content{
-    padding: 20px;
-    /* background-color: aqua; */
+.content {
+  padding: 20px;
+  /* background-color: aqua; */
 }
-.viewbtn{
-    width: 100%;
+.viewbtn {
+  width: 100%;
 }
-.btns{
-    width: 100%;
-    display: flex;
-    gap: 5px;
-    margin: 10px 0;
+.btns {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  margin: 10px 0;
 }
-.btns Button{
-    width: 50%;
+.btns Button {
+  width: 50%;
 }
-p{
-    color: aliceblue;
+p {
+  color: aliceblue;
 }
