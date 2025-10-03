@@ -17,6 +17,7 @@ import Edititem from "../Edit/Edititem";
 const Iteams = () => {
   const notify = () => toast("Iteam Has been deleted");
   const notify2 = () => toast("Iteam not deleted");
+  const notify3 = () => toast("dataUpdated");
   const navigate = useNavigate();
   const [item, setItem] = useState([]);
   const [openConfirm,setOpenConfirm]=useState(false)
@@ -73,11 +74,6 @@ const onhandledlete =  (id) => {
     setEditid(id)
     setopenEdit(true)
   }
- const update=(id)=>{
-  axios.get(`https://fakestoreapi.com/${id}`)
-  .then(response =>console.log(response.data))
-  // .then(data => alert(data));
- }
 
 
  
@@ -147,11 +143,22 @@ const onhandledlete =  (id) => {
       }}/>
       <Edititem
       open={openEdit}
-      id={editid}
+      // id={editid}
+      productData={item.find(p => p.id === editid)}
       onClose={()=>setopenEdit(false)} 
       onUpdate={(updateProduct)=>{
         setItem(prev =>prev.map(p=>p.id  === updateProduct.id ? updateProduct :p))
-      }}/>
+     ; notify3() }}
+      />
+              {/* setItem(prev =>
+          prev.map(p => {
+            if (p.id === updateProduct.id) {
+              return updateProduct; // replace this one
+            } else {
+              return p; // keep the old one
+            }
+          })
+        ); */}
 
     </div>
   );

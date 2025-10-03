@@ -4,40 +4,29 @@ import axios from 'axios'
 import { Button, TextField } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
-const Edititem = ({open, onClose, id,onUpdate}) => {
+const Edititem = ({open, onClose, id,onUpdate,productData}) => {
   const editboxRef = useRef()
   const [product, setProduct] = useState([])
 
   // const { id } = useParams(); 
   console.log(id)
 
-  // useEffect(() => {
-  //   if (!id || !open) return; //to double check is it is true ...
-  //   axios.get(`https://fakestoreapi.com/products/${id}`)
-  //     .then((response) => setProduct(response.data));
-  //   console.log(product);
-  //   const handleClickOutside = (event) => {
-  //           if (editboxRef.current && !editboxRef.current.contains(event.target)) {
-  //       onClose();
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [id]);
-
   useEffect(() => {
-    if (!id || !open) return;
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
-        setProduct(response.data)
-      } catch(err) {
-        console.log(err)
-      }
+    // if (!id || !open) return;
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await axios.get(`https://fakestoreapi.com/products/${id}`)
+    //     setProduct(response.data)
+    //   } catch(err) {
+    //     console.log(err)
+    //   }
+    // }
+    // fetchData()     it is used to api update only 
+
+
+    if(open || productData){
+      setProduct(productData)
     }
-    fetchData()
 
     const handleClickOutside = (event) => {
       if (editboxRef.current && !editboxRef.current.contains(event.target)) {
@@ -54,9 +43,12 @@ const Edititem = ({open, onClose, id,onUpdate}) => {
 
   const UpdateProduct = async () => {
    try{
-    const response = await axios.put( `https://fakestoreapi.com/products/${id}`,
-        product)
-        onUpdate(response.data);
+    // const response = await axios.put( `https://fakestoreapi.com/products/${id}`,
+    //     product)
+        // onUpdate(response.data);
+        setProduct(product)
+        onUpdate(product)
+
         onClose()
    } 
    
