@@ -148,7 +148,10 @@ const onhandledlete =  (id) => {
       <Edititem
       open={openEdit}
       id={editid}
-      onClose={()=>setopenEdit(false)} />
+      onClose={()=>setopenEdit(false)} 
+      onUpdate={(updateProduct)=>{
+        setItem(prev =>prev.map(p=>p.id  === updateProduct.id ? updateProduct :p))
+      }}/>
 
     </div>
   );

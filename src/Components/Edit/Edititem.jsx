@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Button, TextField } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
-const Edititem = ({open, onClose, id}) => {
+const Edititem = ({open, onClose, id,onUpdate}) => {
   const editboxRef = useRef()
   const [product, setProduct] = useState([])
 
@@ -52,7 +52,17 @@ const Edititem = ({open, onClose, id}) => {
 
   if (!open) return null;
 
-  const UpdateProduct = ({}) => {
+  const UpdateProduct = async () => {
+   try{
+    const response = await axios.put( `https://fakestoreapi.com/products/${id}`,
+        product)
+        onUpdate(response.data);
+        onClose()
+   } 
+   
+   catch(err){
+    alert(err)
+   }
   }
 
   return (
@@ -65,6 +75,7 @@ const Edititem = ({open, onClose, id}) => {
             onChange={(e) => setProduct({...product, title: e.target.value})}
             value={product.title}
             className='textEditField'
+            type='text'
             label="title"
             variant="filled"
             focused
@@ -75,6 +86,7 @@ const Edititem = ({open, onClose, id}) => {
             className='textEditField'
             label="price"
             variant="filled"
+            type='number'
             focused
           />
           <TextField
@@ -101,7 +113,7 @@ const Edititem = ({open, onClose, id}) => {
             variant="filled"
             focused
           />
-          <Button variant='contained'>update Product</Button>
+          <Button onClick={UpdateProduct} variant='contained'>update Product</Button>
         </div>
       </div>
     </div>
