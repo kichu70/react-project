@@ -1,0 +1,20 @@
+.login{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(187, 212, 238);
+    margin: 15vh auto;
+    max-width: 450px;
+    border-radius: 8px;
+}
+.login-sub{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 50px 50px;
+    gap: 20px;
+}
+.login-sub Button{
+    margin: 20px  0;
+}
+.login-sub label{
+    color: rgb(127, 127, 203) !important;
+}
