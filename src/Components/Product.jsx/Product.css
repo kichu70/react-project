@@ -104,7 +104,7 @@
     }
   .Card1{
     display: block;
-    margin: auto;
+    margin: 150px auto;
     width: 440px !important;
     box-shadow: #000000 0 0 20px;
     border-radius: 20px;
@@ -126,7 +126,7 @@
 
   .Card1{
     display: block;
-    margin: auto;
+    margin:150px auto;
     width: 300px !important;
     box-shadow: #000000 0 0 20px;
     border-radius: 20px;

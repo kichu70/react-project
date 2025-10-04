@@ -2,8 +2,10 @@ import React from 'react'
 import { Button } from '@mui/material'
 import "./Navbar.css"
 import { Navigate, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../Context/Auth'
 const Navbar = () => {
   const Navigate =useNavigate()
+  const {logout} = useAuth()
   return (
      <div className='nav-bar'>
       <div className="nav">
@@ -13,7 +15,7 @@ const Navbar = () => {
         <Button className='btns'>Adoutus</Button>
         <Button className='btns'>ContactUs</Button>
         <img src="/images/user.jpg" alt="" />
-        <Button variant='outlined'>LOGOUT</Button>
+        <Button variant='outlined'onClick={logout}>LOGOUT</Button>
        </div>
       </div>
     </div>
